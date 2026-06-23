@@ -1,0 +1,52 @@
+---
+import type { MigratedRoute } from '../data/routes';
+import NetlifyForm from './NetlifyForm.astro';
+
+interface Props {
+  route: MigratedRoute;
+}
+
+type ContentPart =
+  | { type: 'html'; value: string }
+  | { type: 'form'; value: FormVariant };
+
+type FormVariant = 'contactForm' | 'tabForm' | 'rrhhForm';
+
+const { route } = Astro.props;
+const pages = import.meta.glob('../content/wp-pages/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
+const html = pages[`../content/wp-pages/${route.contentFile}`] ?? '';
+
+function splitContent(content: string): ContentPart[] {
+  const parts: ContentPart[] = [];
+  const pattern = /<!--NETLIFY_FORM:(contactForm|tabForm|rrhhForm)-->/g;
+  let cursor = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(content))) {
+    if (match.index > cursor) {
+      parts.push({ type: 'html', value: content.slice(cursor, match.index) });
+    }
+    parts.push({ type: 'form', value: match[1] as FormVariant });
+    cursor = pattern.lastIndex;
+  }
+
+  if (cursor < content.length) {
+    parts.push({ type: 'html', value: content.slice(cursor) });
+  }
+
+  return parts;
+}
+
+const parts = splitContent(html);
+---
+
+{parts.map((part) => (
+  part.type === 'html'
+    ? <Fragment set:html={part.value} />
+    : <NetlifyForm locale={route.locale} variant={part.value} sourcePath={route.path} />
+))}

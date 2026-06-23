@@ -1,0 +1,20 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import WpHtmlPage from '../components/WpHtmlPage.astro';
+import { routedPages } from '../data/routes';
+
+export function getStaticPaths() {
+  return routedPages
+    .filter((route) => route.path !== '/')
+    .map((route) => ({
+      params: { slug: route.path.replace(/^\/|\/$/g, '') },
+      props: { route },
+    }));
+}
+
+const { route } = Astro.props;
+---
+
+<SiteLayout route={route}>
+  <WpHtmlPage route={route} />
+</SiteLayout>

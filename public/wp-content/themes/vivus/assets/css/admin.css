@@ -1,0 +1,92 @@
+#wp-admin-bar-wp-logo{
+    display: none !important;
+}
+#wp-admin-bar-updates{
+    display: none !important;
+}
+#wp-admin-bar-comments{
+    display: none !important;
+}
+#wp-admin-bar-new-content{
+    display: none !important;
+}
+#welcome-panel{
+    display: none !important;
+}
+[for="wp_welcome_panel-hide"]{
+    display: none !important;
+}
+
+#your-profile h2{
+    display: none !important;
+}
+#your-profile .user-description-wrap,
+#your-profile .user-profile-picture{
+    display: none !important;
+}
+#your-profile #application-passwords-section{
+    display: none !important;
+}
+#your-profile .yoast.yoast-settings{
+    display: none !important;
+}
+
+#your-profile .user-rich-editing-wrap,
+#your-profile .user-admin-color-wrap,
+#your-profile .user-comment-shortcuts-wrap,
+#your-profile .show-admin-bar,
+#your-profile .user-language-wrap,
+#your-profile .user-display-name-wrap,
+#your-profile .user-nickname-wrap{
+    display: none !important;
+}
+
+
+#your-profile .user-url-wrap,
+#your-profile .user-facebook-wrap,
+#your-profile .user-instagram-wrap,
+#your-profile .user-linkedin-wrap,
+#your-profile .user-myspace-wrap,
+#your-profile .user-pinterest-wrap,
+#your-profile .user-soundcloud-wrap,
+#your-profile .user-tumblr-wrap,
+#your-profile .user-twitter-wrap,
+#your-profile .user-youtube-wrap,
+#your-profile .user-wikipedia-wrap{
+    display: none !important;
+}
+#your-profile .user-description-wrap,
+#your-profile .user-profile-picture{
+    display: none !important;
+}
+#your-profile #application-passwords-section{
+    display: none !important;
+}
+#your-profile .yoast.yoast-settings{
+    display: none !important;
+}
+
+#your-profile .user-rich-editing-wrap,
+#your-profile .user-admin-color-wrap,
+#your-profile .user-comment-shortcuts-wrap,
+#your-profile .show-admin-bar,
+#your-profile .user-language-wrap,
+#your-profile .user-display-name-wrap,
+#your-profile .user-nickname-wrap{
+    display: none !important;
+}
+
+
+#your-profile .user-url-wrap,
+#your-profile .user-facebook-wrap,
+#your-profile .user-instagram-wrap,
+#your-profile .user-linkedin-wrap,
+#your-profile .user-myspace-wrap,
+#your-profile .user-pinterest-wrap,
+#your-profile .user-soundcloud-wrap,
+#your-profile .user-tumblr-wrap,
+#your-profile .user-twitter-wrap,
+#your-profile .user-youtube-wrap,
+#your-profile .user-wikipedia-wrap{
+    display: none !important;
+}

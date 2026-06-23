@@ -1,0 +1,67 @@
+---
+import type { MigratedRoute } from '../data/routes';
+import { contactInfo, localeConfig } from '../data/site';
+
+interface Props {
+  route: MigratedRoute;
+}
+
+const { route } = Astro.props;
+const config = localeConfig[route.locale];
+---
+
+<footer class="footer">
+  <section class="widgets"><div class="container">
+    <div class="row justify-content-between align-items-end">
+      <div class="col-12 col-md-3">
+        <a href={config.homePath} class="logo">
+          <img src="/wp-content/themes/vivus/assets/img/logo-footer.svg" alt="Vivus" class="img-fluid" />
+        </a>
+      </div>
+      <div class="col-12 col-md-9 d-md-flex g-4 align-items-center justify-content-between">
+        <ul class="list-unstyled vias mb-0">
+          <li>
+            <a href={contactInfo.whatsappHref}>
+              <img src="/wp-content/themes/vivus/assets/img/icons/icon-phone.svg" class="img-fluid me-2" alt="" />{contactInfo.phoneLabel}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${config.footerEmail}`}>
+              <img src="/wp-content/themes/vivus/assets/img/icons/icon-email.svg" class="img-fluid me-2" alt="" />{config.footerEmail}
+            </a>
+          </li>
+        </ul>
+
+        <ul class="socialmedia list-unstyled mb-0">
+          <li class="instagram"><a href={contactInfo.instagramHref} target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+          </a></li>
+          <li class="whatsapp"><a href={contactInfo.whatsappHref} target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a></li>
+        </ul>
+
+        <div class="buttons">
+          <a href={config.buyerHref} class="btn btn-primary">{config.buyerLabel}</a>
+          <a href="#contacto" class="btn btn-secondary">{config.contactLabel}</a>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="copyright text-center bg-primary text-light"><div class="container d-lg-flex justify-content-center">
+    <ul class="menu list-unstyled">
+      {config.footerLinks.map((item) => (
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href={item.href} rel={item.rel}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <p>Copyright {new Date().getFullYear()}© Vivus Inmobiliaria. Todos los derechos reservados.</p>
+  </div></section>
+</footer>
+
+<a class="button-whatsapp wow bounceIn" href={contactInfo.whatsappHref} target="_blank" rel="noopener">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>

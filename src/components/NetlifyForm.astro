@@ -1,0 +1,160 @@
+---
+import type { Locale } from '../data/routes';
+
+interface Props {
+  locale: Locale;
+  variant: 'contactForm' | 'tabForm' | 'rrhhForm';
+  sourcePath: string;
+}
+
+type Field = {
+  id: string;
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'hidden';
+  placeholder?: string;
+  columns: string;
+  required?: boolean;
+  value?: string;
+};
+
+const { locale, variant, sourcePath } = Astro.props;
+
+const copy = {
+  es: {
+    send: 'Enviar',
+    contactSubject: 'Nuevo contacto web desde Vivus',
+    rrhhSubject: 'Nuevo contacto de emprendedores desde Vivus',
+    name: 'Nombre y apellido',
+    phone: 'Teléfono',
+    email: 'Email',
+    message: 'Mensaje',
+    comments: 'Comentarios',
+    age: 'Edad',
+    location: 'Población',
+    terms: 'Acepto los <a href="/wp-content/uploads/2026/01/Condiciones-de-uso.pdf" target="_blank" rel="noopener">términos</a> y <a href="/wp-content/uploads/2026/01/Politica-de-privacidad.pdf" target="_blank" rel="noopener">condiciones</a>.',
+    success: '/gracias/',
+  },
+  en: {
+    send: 'Send',
+    contactSubject: 'New website contact from Vivus',
+    rrhhSubject: 'New entrepreneurs contact from Vivus',
+    name: 'Name',
+    phone: 'Phone',
+    email: 'Email',
+    message: 'Message',
+    comments: 'Message',
+    age: 'Age',
+    location: 'Location',
+    terms: 'I agree to the <a href="/wp-content/uploads/2026/01/Condiciones-de-uso.pdf" target="_blank" rel="noopener">terms</a> and <a href="/wp-content/uploads/2026/01/Politica-de-privacidad.pdf" target="_blank" rel="noopener">conditions</a>.',
+    success: '/en/thanks/',
+  },
+  ca: {
+    send: 'Envia',
+    contactSubject: 'Nou contacte web des de Vivus',
+    rrhhSubject: 'Nou contacte d’emprenedors des de Vivus',
+    name: 'Nom i cognoms',
+    phone: 'Telèfon',
+    email: 'Email',
+    message: 'Missatge',
+    comments: 'Missatge',
+    age: 'Edat',
+    location: 'Població',
+    terms: 'Accepto els <a href="/wp-content/uploads/2026/01/Condiciones-de-uso.pdf" target="_blank" rel="noopener">termes</a> i les <a href="/wp-content/uploads/2026/01/Politica-de-privacidad.pdf" target="_blank" rel="noopener">condicions</a>.',
+    success: '/ca/gracies/',
+  },
+}[locale];
+
+const formName = `${variant}-${locale}`;
+const prefix = variant.replace(/[A-Z]/g, (letter) => letter.toLowerCase());
+const formClass = variant === 'rrhhForm' ? 'row g-4 align-items-center' : 'row g-4';
+const subject = variant === 'rrhhForm' ? copy.rrhhSubject : copy.contactSubject;
+
+const baseFields: Field[] = variant === 'tabForm'
+  ? [
+      { id: 'name', type: 'text', placeholder: copy.name, columns: 'col-12', required: true },
+      { id: 'phone', type: 'tel', placeholder: copy.phone, columns: 'col-12', required: true },
+      { id: 'email', type: 'email', placeholder: copy.email, columns: 'col-12', required: true },
+      { id: 'message', type: 'textarea', placeholder: copy.comments, columns: 'col-12' },
+      { id: 'subject', type: 'hidden', value: '', columns: 'col-12 d-none' },
+    ]
+  : variant === 'rrhhForm'
+    ? [
+        { id: 'name', type: 'text', placeholder: copy.name, columns: 'col-md-6', required: true },
+        { id: 'age', type: 'text', placeholder: copy.age, columns: 'col-md-6', required: true },
+        { id: 'phone', type: 'tel', placeholder: copy.phone, columns: 'col-md-6', required: true },
+        { id: 'location', type: 'text', placeholder: copy.location, columns: 'col-md-6', required: true },
+        { id: 'email', type: 'email', placeholder: copy.email, columns: 'col-md-6', required: true },
+      ]
+    : [
+        { id: 'name', type: 'text', placeholder: copy.name, columns: 'col-12 col-md-6', required: true },
+        { id: 'email', type: 'email', placeholder: copy.email, columns: 'col-12 col-md-6', required: true },
+        { id: 'phone', type: 'tel', placeholder: copy.phone, columns: 'col-12 mb-3', required: true },
+        { id: 'message', type: 'textarea', placeholder: copy.message, columns: 'col-12' },
+      ];
+
+function fieldName(field: Field) {
+  return `${prefix}[${field.id}]`;
+}
+---
+
+<form
+  action={copy.success}
+  method="POST"
+  id={variant}
+  class={formClass}
+  name={formName}
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+  <p class="netlify-honeypot">
+    <label>Leave this field empty <input name="bot-field" type="text" /></label>
+  </p>
+  <input type="hidden" name="form-name" value={formName} />
+  <input type="hidden" name="locale" value={locale} />
+  <input type="hidden" name="source_page" value={sourcePath} />
+  <input type="hidden" name="subject" value={subject} />
+
+  {baseFields.map((field) => (
+    <div class:list={['form-group', field.columns]}>
+      {field.type === 'textarea' ? (
+        <textarea
+          name={fieldName(field)}
+          id={`${prefix}_${field.id}`}
+          class="form-control"
+          rows="4"
+          placeholder={field.placeholder}
+          aria-label={field.placeholder}
+          required={field.required}
+        ></textarea>
+      ) : (
+        <input
+          type={field.type}
+          name={fieldName(field)}
+          id={`${prefix}_${field.id}`}
+          class={field.type === 'hidden' ? 'form-control d-none' : 'form-control'}
+          placeholder={field.required ? `${field.placeholder} *` : field.placeholder}
+          aria-label={field.placeholder}
+          value={field.value ?? ''}
+          required={field.required}
+        />
+      )}
+    </div>
+  ))}
+
+  <div class:list={['form-group', variant === 'rrhhForm' ? 'col-md-6' : 'col-12']}>
+    <div class="form-check">
+      <input
+        type="checkbox"
+        name={`${prefix}[terms]`}
+        id={`${prefix}_terms`}
+        class="form-check-input"
+        value="Agree"
+        required
+      />
+      <label for={`${prefix}_terms`} class="form-check-label" set:html={`${copy.terms} *`}></label>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-block-mobile btn-orange">{copy.send}</button>
+  </div>
+</form>

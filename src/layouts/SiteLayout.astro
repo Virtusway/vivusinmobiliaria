@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { MigratedRoute } from '../data/routes';
+import { SITE_URL } from '../data/routes';
+import { localeConfig } from '../data/site';
+
+interface Props {
+  route: MigratedRoute;
+}
+
+const { route } = Astro.props;
+const config = localeConfig[route.locale];
+const canonical = new URL(route.canonicalPath, SITE_URL).toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': canonical,
+      url: canonical,
+      name: route.title,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      inLanguage: config.htmlLang,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: 'Vivus',
+      description: 'Inmobiliaria',
+      alternateName: 'Vivus Inmobiliaria',
+      inLanguage: config.htmlLang,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang={config.htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{route.title}</title>
+    <meta name="description" content={route.description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonical} />
+    {Object.entries(route.alternates).map(([locale, href]) => (
+      <link rel="alternate" href={new URL(href, SITE_URL).toString()} hreflang={locale} />
+    ))}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={route.title} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Vivus" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" />
+    <link rel="stylesheet" href="/wp-content/themes/vivus/assets/css/libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="/wp-content/themes/vivus/assets/css/libs/font-awesome.min.css" />
+    <link rel="stylesheet" href="/wp-content/themes/vivus/assets/css/libs/swiper.min.css" />
+    <link rel="stylesheet" href="/wp-content/themes/vivus/assets/css/libs/animate.css" />
+    <link rel="stylesheet" href="/wp-content/themes/vivus/assets/css/libs/lenis.css" />
+    <link rel="stylesheet" href="/wp-content/themes/vivus/assets/css/fonts.css" />
+    <link rel="stylesheet" href="/wp-content/themes/vivus/style.css" />
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/wp-content/themes/vivus/assets/favicon/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/wp-content/themes/vivus/assets/favicon/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/wp-content/themes/vivus/assets/favicon/apple-touch-icon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="/wp-content/themes/vivus/assets/favicon/favicon.ico" />
+    <link rel="icon" href="/wp-content/uploads/2026/01/favicon-300x300.png" sizes="192x192" />
+    <meta name="msapplication-TileImage" content="/wp-content/uploads/2026/01/favicon-300x300.png" />
+
+    <script is:inline src="/wp-content/themes/vivus/assets/js/libs/jquery.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H3Y9HLZJT"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4H3Y9HLZJT');
+    </script>
+  </head>
+  <body class={route.bodyClass} id="top">
+    <Header route={route} />
+    <main class="main clearfix">
+      <slot />
+    </main>
+    <Footer route={route} />
+
+    <script is:inline src="/wp-content/themes/vivus/assets/js/libs/bootstrap.min.js"></script>
+    <script is:inline src="/wp-content/themes/vivus/assets/js/libs/swiper.min.js"></script>
+    <script is:inline src="/wp-content/themes/vivus/assets/js/libs/wow.min.js"></script>
+    <script is:inline src="/wp-content/themes/vivus/assets/js/libs/lenis.min.js"></script>
+    <script is:inline>
+      var starter_vars = {
+        lang: document.documentElement.lang.slice(0, 2),
+        ajax_url: '',
+        is_mobile: false,
+        is_logged_in: false,
+        site_url: '/',
+        actual_url: window.location.href,
+        post_id: 0
+      };
+    </script>
+    <script is:inline src="/wp-content/themes/vivus/assets/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  </body>
+</html>

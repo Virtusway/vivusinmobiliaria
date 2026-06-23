@@ -1,0 +1,316 @@
+<div class="page contact">
+
+	<section class="banner"><div class="container">
+    
+    <picture class="bg mask">       
+        <img width="2880" height="1300" src="/wp-content/uploads/2026/01/contact-banner.webp" class="img-fluid parallax-img" alt="" decoding="sync" loading="eager" fetchpriority="high" srcset="/wp-content/uploads/2026/01/contact-banner.webp 2880w, /wp-content/uploads/2026/01/contact-banner-300x135.webp 300w, /wp-content/uploads/2026/01/contact-banner-1024x462.webp 1024w, /wp-content/uploads/2026/01/contact-banner-768x347.webp 768w, /wp-content/uploads/2026/01/contact-banner-1536x693.webp 1536w, /wp-content/uploads/2026/01/contact-banner-2048x924.webp 2048w" sizes="(max-width: 2880px) 100vw, 2880px" />    </picture>
+   
+
+    <div class="title wow fadeIn">      
+        <h1>En vols saber més?</h1>            </div>
+
+</div></section>
+
+	<section class="section content" ><div class="container">
+		<div class="row">
+
+		<div class="col-12 col-md-7 mb-3 wow fadeIn">
+
+
+<!--NETLIFY_FORM:contactForm-->
+
+	   
+
+		</div>
+		<div class="col-12 col-md-3 offset-md-1 mb-3 wow fadeIn">
+
+			<ul class="vias list-unstyled">
+				<li>Avda. Camp de Morvedre, 157,<br />
+Puerto de Sagunto - 46520 - Valencia - España</li>
+
+				<li><a href="mailto:info@vivusinmobiliaria.com">info@vivusinmobiliaria.com</a></li>
+
+				<li>+34 604 81 22 44</li>	
+			</ul>
+
+			<ul class="socialmedia list-unstyled">
+														<li class="instagram"><a href="https://www.instagram.com/vivusinmobiliaria/" target="_blank">
+						<i class="fab fa-instagram"></i>
+					</a></li>
+												</ul>
+
+		</div>
+		
+	</div>
+
+</div></section>
+
+	
+</div>
+
+<script type="text/javascript">
+
+function loadGoogleMaps() {
+    var script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=&callback=initMap';
+    script.async = true; // Agrega el atributo async
+    document.body.appendChild(script);
+}
+
+(function($) {
+	function new_map( $el ) {
+		var $markers = $el.find('.marker');
+
+		var args = {
+			zoom		: 12,
+			styles: [
+				{
+			        "featureType": "water",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "color": "#d3d3d3"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "transit",
+			        "stylers": [
+			            {
+			                "color": "#808080"
+			            },
+			            {
+			                "visibility": "off"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.highway",
+			        "elementType": "geometry.stroke",
+			        "stylers": [
+			            {
+			                "visibility": "on"
+			            },
+			            {
+			                "color": "#b3b3b3"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.highway",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "color": "#ffffff"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.local",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "visibility": "on"
+			            },
+			            {
+			                "color": "#ffffff"
+			            },
+			            {
+			                "weight": 1.8
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.local",
+			        "elementType": "geometry.stroke",
+			        "stylers": [
+			            {
+			                "color": "#d7d7d7"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "poi",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "visibility": "on"
+			            },
+			            {
+			                "color": "#ebebeb"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "administrative",
+			        "elementType": "geometry",
+			        "stylers": [
+			            {
+			                "color": "#a7a7a7"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.arterial",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "color": "#ffffff"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.arterial",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "color": "#ffffff"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "landscape",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "visibility": "on"
+			            },
+			            {
+			                "color": "#efefef"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road",
+			        "elementType": "labels.text.fill",
+			        "stylers": [
+			            {
+			                "color": "#696969"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "administrative",
+			        "elementType": "labels.text.fill",
+			        "stylers": [
+			            {
+			                "visibility": "on"
+			            },
+			            {
+			                "color": "#737373"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "poi",
+			        "elementType": "labels.icon",
+			        "stylers": [
+			            {
+			                "visibility": "off"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "poi",
+			        "elementType": "labels",
+			        "stylers": [
+			            {
+			                "visibility": "off"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.arterial",
+			        "elementType": "geometry.stroke",
+			        "stylers": [
+			            {
+			                "color": "#d6d6d6"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road",
+			        "elementType": "labels.icon",
+			        "stylers": [
+			            {
+			                "visibility": "off"
+			            }
+			        ]
+			    },
+			    {},
+			    {
+			        "featureType": "poi",
+			        "elementType": "geometry.fill",
+			        "stylers": [
+			            {
+			                "color": "#dadada"
+			            }
+			        ]
+			    }
+			],
+			center		: new google.maps.LatLng(0, 0),
+			mapTypeId	: google.maps.MapTypeId.ROADMAP
+		};
+
+		var map = new google.maps.Map( $el[0], args);
+
+		map.markers = [];
+
+		$markers.each(function(){		
+	    	add_marker( $(this), map );
+		});
+
+		center_map(map);
+
+		return map;
+	}
+
+	function add_marker( $marker, map ) {
+
+		var latlng = new google.maps.LatLng( $marker.attr('data-lat'), $marker.attr('data-lng') );
+
+		var marker = new google.maps.Marker({
+			position : latlng,
+			icon: '/wp-content/themes/vivus/assets/img/marker.svg',
+			map	: map
+		});
+
+		map.markers.push( marker );
+
+		if($marker.html()){
+			var infowindow = new google.maps.InfoWindow({
+				content		: $marker.html()
+			});
+
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open( map, marker );
+			});
+		}
+	}
+
+	function center_map( map ) {
+		var bounds = new google.maps.LatLngBounds();
+
+		$.each( map.markers, function(i, marker){
+			var latlng = new google.maps.LatLng( marker.position.lat(), marker.position.lng() );
+			bounds.extend( latlng );
+		});
+
+		if( map.markers.length == 1 ) {
+		    map.setCenter( bounds.getCenter() );
+		    map.setZoom(15);
+		} else {
+			map.fitBounds( bounds );
+		}
+	}
+
+	var map = null;
+
+	$(document).ready(function(){
+		$('#map').each(function(){
+			map = new_map($(this));
+		});
+	});
+
+})(jQuery);
+</script>

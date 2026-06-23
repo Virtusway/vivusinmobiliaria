@@ -1,0 +1,49 @@
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#login{
+	background: #fff;
+	padding: 30px;
+	box-shadow: 0px 0px 35px 0px rgba(154, 161, 171, 0.15);
+	border-radius: 6px;
+}
+#login h1{
+	border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+#login h1 a{
+	width: 180px !important;
+	height: 60px !important;
+	padding: 0 !important;
+	margin-bottom: 0 !important;
+	background: url('../img/logo.png') !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
+	background-size: contain !important;
+}
+
+#login form{
+	border: 0 !important;;
+	box-shadow: none !important;
+}
+
+@media screen and (min-width:992px){
+	#login{
+		padding: 50px;
+	}
+}
+
+/* Language switcher */
+.language-switcher{
+	display: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 10px;
+}
+
+

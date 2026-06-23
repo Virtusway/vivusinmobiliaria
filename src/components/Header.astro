@@ -1,0 +1,57 @@
+---
+import type { MigratedRoute, Locale } from '../data/routes';
+import { alternateHref, localeConfig } from '../data/site';
+
+interface Props {
+  route: MigratedRoute;
+}
+
+const { route } = Astro.props;
+const config = localeConfig[route.locale];
+const languages: Array<{ locale: Locale; hreflang: string; label: string }> = [
+  { locale: 'es', hreflang: 'es-ES', label: 'Español' },
+  { locale: 'en', hreflang: 'en-US', label: 'English' },
+  { locale: 'ca', hreflang: 'ca', label: 'Valencià' },
+];
+---
+
+<header class="header"><div class="container">
+  <a href={config.homePath} class="logo">
+    <img src="/wp-content/themes/vivus/assets/img/logo.svg" alt="Vivus" class="img-fluid" />
+  </a>
+
+  <div class="nav-menu" data-open="menu">
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+    <span class="menu-line"></span>
+  </div>
+
+  <nav class="navigation">
+    <ul class="menu list-unstyled">
+      {config.nav.map((item) => (
+        <li class="menu-item menu-item-type-post_type menu-item-object-page">
+          <a href={item.href}>{item.label}</a>
+        </li>
+      ))}
+      <li class="pll-parent-menu-item menu-item menu-item-type-custom menu-item-object-custom current-menu-parent menu-item-has-children">
+        <a href="#pll_switcher">{config.label}</a>
+        <ul class="sub-menu">
+          {languages.map((language) => (
+            <li class:list={[
+              'lang-item',
+              `lang-item-${language.locale}`,
+              'menu-item',
+              'menu-item-type-custom',
+              'menu-item-object-custom',
+              route.locale === language.locale && 'current-lang',
+            ]}>
+              <a href={alternateHref(route, language.locale)} hreflang={language.hreflang} lang={language.hreflang}>
+                {language.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div></header>
