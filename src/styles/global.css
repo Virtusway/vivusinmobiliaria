@@ -1,3 +1,16 @@
 .netlify-honeypot {
   display: none !important;
 }
+
+.footer .widgets .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+@media screen and (min-width: 992px) {
+  .footer .widgets .buttons {
+    justify-content: flex-end;
+  }
+}

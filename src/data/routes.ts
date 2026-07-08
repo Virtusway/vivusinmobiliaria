@@ -547,6 +547,134 @@ export const migratedRoutes = [
   },
   {
     "locale": "es",
+    "path": "/guia-de-inversion-y-estilo-de-vida/",
+    "sourceUrl": "https://vivusinmobiliaria.com/guia-de-inversion-y-estilo-de-vida/",
+    "title": "Guía de Inversión y Estilo de Vida - Vivus",
+    "description": "Inmobiliaria",
+    "canonicalPath": "/guia-de-inversion-y-estilo-de-vida/",
+    "alternates": {
+      "es": "/guia-de-inversion-y-estilo-de-vida/",
+      "en": "/en/investment-and-lifestyle-guide/",
+      "ca": "/ca/guia-dinversio-i-estil-de-vida/"
+    },
+    "bodyClass": "",
+    "contentFile": "es-guia-de-inversion-y-estilo-de-vida.html",
+    "group": "lifestyle-guide"
+  },
+  {
+    "locale": "es",
+    "path": "/servicios-inmobiliarios-360/",
+    "sourceUrl": "https://vivusinmobiliaria.com/servicios-inmobiliarios-360/",
+    "title": "Servicios Inmobiliarios 360º - Vivus",
+    "description": "Inmobiliaria",
+    "canonicalPath": "/servicios-inmobiliarios-360/",
+    "alternates": {
+      "es": "/servicios-inmobiliarios-360/",
+      "en": "/en/360o-real-estate-services/",
+      "ca": "/ca/serveis-immobiliaris-360/"
+    },
+    "bodyClass": "",
+    "contentFile": "es-servicios-inmobiliarios-360.html",
+    "group": "services-360"
+  },
+  {
+    "locale": "es",
+    "path": "/accesibilidad/",
+    "sourceUrl": "https://vivusinmobiliaria.com/accesibilidad/",
+    "title": "Accesibilidad - Vivus",
+    "description": "Declaración de accesibilidad web",
+    "canonicalPath": "/accesibilidad/",
+    "alternates": {
+      "es": "/accesibilidad/",
+      "en": "/en/accesibilidad/",
+      "ca": "/en/accesibilidad/"
+    },
+    "bodyClass": "",
+    "contentFile": "es-accesibilidad.html",
+    "group": "accessibility"
+  },
+  {
+    "locale": "en",
+    "path": "/en/investment-and-lifestyle-guide/",
+    "sourceUrl": "https://vivusinmobiliaria.com/en/investment-and-lifestyle-guide/",
+    "title": "Investment and Lifestyle Guide - Vivus",
+    "description": "Inmobiliaria",
+    "canonicalPath": "/en/investment-and-lifestyle-guide/",
+    "alternates": {
+      "es": "/guia-de-inversion-y-estilo-de-vida/",
+      "en": "/en/investment-and-lifestyle-guide/",
+      "ca": "/ca/guia-dinversio-i-estil-de-vida/"
+    },
+    "bodyClass": "",
+    "contentFile": "en-investment-and-lifestyle-guide.html",
+    "group": "lifestyle-guide"
+  },
+  {
+    "locale": "en",
+    "path": "/en/360o-real-estate-services/",
+    "sourceUrl": "https://vivusinmobiliaria.com/en/360o-real-estate-services/",
+    "title": "360º Real Estate Services - Vivus",
+    "description": "Inmobiliaria",
+    "canonicalPath": "/en/360o-real-estate-services/",
+    "alternates": {
+      "es": "/servicios-inmobiliarios-360/",
+      "en": "/en/360o-real-estate-services/",
+      "ca": "/ca/serveis-immobiliaris-360/"
+    },
+    "bodyClass": "",
+    "contentFile": "en-360o-real-estate-services.html",
+    "group": "services-360"
+  },
+  {
+    "locale": "en",
+    "path": "/en/accesibilidad/",
+    "sourceUrl": "https://vivusinmobiliaria.com/en/accesibilidad/",
+    "title": "Accesibilidad - Vivus",
+    "description": "Web accessibility statement",
+    "canonicalPath": "/en/accesibilidad/",
+    "alternates": {
+      "es": "/accesibilidad/",
+      "en": "/en/accesibilidad/",
+      "ca": "/en/accesibilidad/"
+    },
+    "bodyClass": "",
+    "contentFile": "en-accesibilidad.html",
+    "group": "accessibility"
+  },
+  {
+    "locale": "ca",
+    "path": "/ca/guia-dinversio-i-estil-de-vida/",
+    "sourceUrl": "https://vivusinmobiliaria.com/ca/guia-dinversio-i-estil-de-vida/",
+    "title": "Guia d'Inversió i Estil de Vida - Vivus",
+    "description": "Inmobiliaria",
+    "canonicalPath": "/ca/guia-dinversio-i-estil-de-vida/",
+    "alternates": {
+      "es": "/guia-de-inversion-y-estilo-de-vida/",
+      "en": "/en/investment-and-lifestyle-guide/",
+      "ca": "/ca/guia-dinversio-i-estil-de-vida/"
+    },
+    "bodyClass": "",
+    "contentFile": "ca-guia-dinversio-i-estil-de-vida.html",
+    "group": "lifestyle-guide"
+  },
+  {
+    "locale": "ca",
+    "path": "/ca/serveis-immobiliaris-360/",
+    "sourceUrl": "https://vivusinmobiliaria.com/ca/serveis-immobiliaris-360/",
+    "title": "Serveis Immobiliaris 360 º - Vivus",
+    "description": "Inmobiliaria",
+    "canonicalPath": "/ca/serveis-immobiliaris-360/",
+    "alternates": {
+      "es": "/servicios-inmobiliarios-360/",
+      "en": "/en/360o-real-estate-services/",
+      "ca": "/ca/serveis-immobiliaris-360/"
+    },
+    "bodyClass": "",
+    "contentFile": "ca-serveis-immobiliaris-360.html",
+    "group": "services-360"
+  },
+  {
+    "locale": "es",
     "path": "/gracias/",
     "sourceUrl": "",
     "title": "Gracias - Vivus",
