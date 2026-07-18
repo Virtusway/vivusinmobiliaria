@@ -9,11 +9,11 @@ export type MigratedRoute = {
   sourceUrl: string;
   title: string;
   description: string;
-  canonicalPath: string;
   alternates: Partial<Record<Locale, string>>;
   bodyClass: string;
   contentFile: string;
   group: string;
+  noindex?: boolean;
 };
 
 export const migratedRoutes = [
@@ -22,8 +22,7 @@ export const migratedRoutes = [
     "path": "/",
     "sourceUrl": "https://vivusinmobiliaria.com/",
     "title": "Vivus - Inmobiliaria",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/",
+    "description": "Agencia inmobiliaria en la Comunidad Valenciana. Te ayudamos a comprar, vender o alquilar tu vivienda con un servicio integral y de confianza.",
     "alternates": {
       "es": "/",
       "en": "/en/",
@@ -35,27 +34,10 @@ export const migratedRoutes = [
   },
   {
     "locale": "es",
-    "path": "/inicio/",
-    "sourceUrl": "https://vivusinmobiliaria.com/inicio/",
-    "title": "Inicio - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/inicio/",
-    "alternates": {
-      "es": "/inicio/",
-      "en": "/en/home/",
-      "ca": "/ca/inici/"
-    },
-    "bodyClass": "home",
-    "contentFile": "es-inicio.html",
-    "group": "home"
-  },
-  {
-    "locale": "es",
     "path": "/conocenos/",
     "sourceUrl": "https://vivusinmobiliaria.com/conocenos/",
     "title": "Conócenos - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/conocenos/",
+    "description": "Somos una agencia de intermediación inmobiliaria que trabaja para maximizar los resultados al comprar, vender o alquilar tu propiedad.",
     "alternates": {
       "es": "/conocenos/",
       "en": "/en/about-us/",
@@ -70,8 +52,7 @@ export const migratedRoutes = [
     "path": "/servicios/",
     "sourceUrl": "https://vivusinmobiliaria.com/servicios/",
     "title": "Servicios - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/servicios/",
+    "description": "Trabajamos de forma holística y coordinada para ofrecerte un servicio inmobiliario integral, de principio a fin.",
     "alternates": {
       "es": "/servicios/",
       "en": "/en/services/",
@@ -86,8 +67,7 @@ export const migratedRoutes = [
     "path": "/confiamos-en/",
     "sourceUrl": "https://vivusinmobiliaria.com/confiamos-en/",
     "title": "Confiamos en - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/confiamos-en/",
+    "description": "Empresas de confianza para el mantenimiento y mejora de tu vivienda, recomendadas por Vivus Inmobiliaria.",
     "alternates": {
       "es": "/confiamos-en/",
       "en": "/en/we-trust/",
@@ -102,8 +82,7 @@ export const migratedRoutes = [
     "path": "/emprendedores/",
     "sourceUrl": "https://vivusinmobiliaria.com/emprendedores/",
     "title": "Emprendedores - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/emprendedores/",
+    "description": "Únete al equipo de Vivus y desarrolla tu carrera profesional en el sector inmobiliario.",
     "alternates": {
       "es": "/emprendedores/",
       "en": "/en/entrepreneurs/",
@@ -118,8 +97,7 @@ export const migratedRoutes = [
     "path": "/contacto/",
     "sourceUrl": "https://vivusinmobiliaria.com/contacto/",
     "title": "Contacto - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/contacto/",
+    "description": "Contacta con Vivus Inmobiliaria. Resolvemos tus dudas sobre comprar, vender o alquilar tu vivienda.",
     "alternates": {
       "es": "/contacto/",
       "en": "/en/contact/",
@@ -134,8 +112,7 @@ export const migratedRoutes = [
     "path": "/landing/",
     "sourceUrl": "https://vivusinmobiliaria.com/landing/",
     "title": "Landing - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/landing/",
+    "description": "Propiedades en Canet d'En Berenguer y Puerto de Sagunto. Descubre las oportunidades inmobiliarias de la costa valenciana.",
     "alternates": {
       "es": "/landing/",
       "en": "/en/landing-en/",
@@ -143,15 +120,15 @@ export const migratedRoutes = [
     },
     "bodyClass": "",
     "contentFile": "es-landing.html",
-    "group": "landing"
+    "group": "landing",
+    "noindex": true
   },
   {
     "locale": "es",
     "path": "/politica-de-cookies/",
     "sourceUrl": "https://vivusinmobiliaria.com/politica-de-cookies/",
     "title": "Política de cookies - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/politica-de-cookies/",
+    "description": "Política de cookies de Vivus Inmobiliaria: qué cookies utilizamos y cómo puedes gestionarlas.",
     "alternates": {
       "es": "/politica-de-cookies/",
       "en": "/en/cookies-policy/",
@@ -166,8 +143,7 @@ export const migratedRoutes = [
     "path": "/aviso-legal/",
     "sourceUrl": "https://vivusinmobiliaria.com/aviso-legal/",
     "title": "Aviso legal - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/aviso-legal/",
+    "description": "Aviso legal de Vivus Inmobiliaria: información legal y condiciones de uso del sitio web.",
     "alternates": {
       "es": "/aviso-legal/",
       "en": "/en/legal-warning/",
@@ -182,8 +158,7 @@ export const migratedRoutes = [
     "path": "/politica-de-privacidad/",
     "sourceUrl": "https://vivusinmobiliaria.com/politica-de-privacidad/",
     "title": "Política de privacidad - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/politica-de-privacidad/",
+    "description": "Política de privacidad de Vivus Inmobiliaria: cómo tratamos y protegemos tus datos personales.",
     "alternates": {
       "es": "/politica-de-privacidad/",
       "en": "/en/privacy-policy/",
@@ -197,9 +172,8 @@ export const migratedRoutes = [
     "locale": "en",
     "path": "/en/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/",
-    "title": "Vivus - Inmobiliaria",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/",
+    "title": "Vivus - Real Estate",
+    "description": "Real estate agency in the Valencian Community. We help you buy, sell or rent your home with a comprehensive, trustworthy service.",
     "alternates": {
       "es": "/",
       "en": "/en/",
@@ -211,27 +185,10 @@ export const migratedRoutes = [
   },
   {
     "locale": "en",
-    "path": "/en/home/",
-    "sourceUrl": "https://vivusinmobiliaria.com/en/home/",
-    "title": "Home - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/home/",
-    "alternates": {
-      "es": "/inicio/",
-      "en": "/en/home/",
-      "ca": "/ca/inici/"
-    },
-    "bodyClass": "home",
-    "contentFile": "en-home.html",
-    "group": "home"
-  },
-  {
-    "locale": "en",
     "path": "/en/about-us/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/about-us/",
     "title": "About Us - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/about-us/",
+    "description": "We are a real estate intermediation agency working to maximise the results you get when buying, selling or renting.",
     "alternates": {
       "es": "/conocenos/",
       "en": "/en/about-us/",
@@ -246,8 +203,7 @@ export const migratedRoutes = [
     "path": "/en/services/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/services/",
     "title": "Services - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/services/",
+    "description": "We work holistically and in a coordinated way to offer you a comprehensive real estate service.",
     "alternates": {
       "es": "/servicios/",
       "en": "/en/services/",
@@ -262,8 +218,7 @@ export const migratedRoutes = [
     "path": "/en/we-trust/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/we-trust/",
     "title": "We trust - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/we-trust/",
+    "description": "Trusted companies for the upkeep and improvement of your home, recommended by Vivus Real Estate.",
     "alternates": {
       "es": "/confiamos-en/",
       "en": "/en/we-trust/",
@@ -278,8 +233,7 @@ export const migratedRoutes = [
     "path": "/en/entrepreneurs/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/entrepreneurs/",
     "title": "Entrepreneurs - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/entrepreneurs/",
+    "description": "Join the Vivus team and grow your professional career in the real estate sector.",
     "alternates": {
       "es": "/emprendedores/",
       "en": "/en/entrepreneurs/",
@@ -294,8 +248,7 @@ export const migratedRoutes = [
     "path": "/en/contact/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/contact/",
     "title": "Contact - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/contact/",
+    "description": "Get in touch with Vivus Real Estate. We answer your questions about buying, selling or renting your home.",
     "alternates": {
       "es": "/contacto/",
       "en": "/en/contact/",
@@ -310,8 +263,7 @@ export const migratedRoutes = [
     "path": "/en/landing-en/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/landing-en/",
     "title": "Landing EN - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/landing-en/",
+    "description": "Properties in Canet d'En Berenguer and Puerto de Sagunto. Discover real estate opportunities on the Valencian coast.",
     "alternates": {
       "es": "/landing/",
       "en": "/en/landing-en/",
@@ -319,15 +271,15 @@ export const migratedRoutes = [
     },
     "bodyClass": "",
     "contentFile": "en-landing-en.html",
-    "group": "landing"
+    "group": "landing",
+    "noindex": true
   },
   {
     "locale": "en",
     "path": "/en/cookies-policy/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/cookies-policy/",
     "title": "Cookies policy - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/cookies-policy/",
+    "description": "Vivus Real Estate cookies policy: which cookies we use and how you can manage them.",
     "alternates": {
       "es": "/politica-de-cookies/",
       "en": "/en/cookies-policy/",
@@ -342,8 +294,7 @@ export const migratedRoutes = [
     "path": "/en/privacy-policy/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/privacy-policy/",
     "title": "Privacy policy - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/privacy-policy/",
+    "description": "Vivus Real Estate privacy policy: how we process and protect your personal data.",
     "alternates": {
       "es": "/politica-de-privacidad/",
       "en": "/en/privacy-policy/",
@@ -358,8 +309,7 @@ export const migratedRoutes = [
     "path": "/en/legal-warning/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/legal-warning/",
     "title": "Legal warning - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/legal-warning/",
+    "description": "Vivus Real Estate legal notice: legal information and terms of use for this website.",
     "alternates": {
       "es": "/aviso-legal/",
       "en": "/en/legal-warning/",
@@ -373,9 +323,8 @@ export const migratedRoutes = [
     "locale": "ca",
     "path": "/ca/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/",
-    "title": "Vivus - Inmobiliaria",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/",
+    "title": "Vivus - Immobiliària",
+    "description": "Agència immobiliària a la Comunitat Valenciana. T'ajudem a comprar, vendre o llogar el teu habitatge amb un servei integral i de confiança.",
     "alternates": {
       "es": "/",
       "en": "/en/",
@@ -387,27 +336,10 @@ export const migratedRoutes = [
   },
   {
     "locale": "ca",
-    "path": "/ca/inici/",
-    "sourceUrl": "https://vivusinmobiliaria.com/ca/inici/",
-    "title": "Inici - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/inici/",
-    "alternates": {
-      "es": "/inicio/",
-      "en": "/en/home/",
-      "ca": "/ca/inici/"
-    },
-    "bodyClass": "home",
-    "contentFile": "ca-inici.html",
-    "group": "home"
-  },
-  {
-    "locale": "ca",
     "path": "/ca/coneix-nos/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/coneix-nos/",
     "title": "Coneix-nos - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/coneix-nos/",
+    "description": "Som una agència d'intermediació immobiliària que treballa per maximitzar els resultats en comprar, vendre o llogar la teva propietat.",
     "alternates": {
       "es": "/conocenos/",
       "en": "/en/about-us/",
@@ -422,8 +354,7 @@ export const migratedRoutes = [
     "path": "/ca/serveis/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/serveis/",
     "title": "Serveis - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/serveis/",
+    "description": "Treballem de forma holística i coordinada per oferir-te un servei immobiliari integral.",
     "alternates": {
       "es": "/servicios/",
       "en": "/en/services/",
@@ -438,8 +369,7 @@ export const migratedRoutes = [
     "path": "/ca/confiem-en/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/confiem-en/",
     "title": "Confiem en - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/confiem-en/",
+    "description": "Empreses de confiança per al manteniment i la millora del teu habitatge, recomanades per Vivus Immobiliària.",
     "alternates": {
       "es": "/confiamos-en/",
       "en": "/en/we-trust/",
@@ -454,8 +384,7 @@ export const migratedRoutes = [
     "path": "/ca/emprenedors/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/emprenedors/",
     "title": "Emprenedors - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/emprenedors/",
+    "description": "Uneix-te a l'equip de Vivus i desenvolupa la teva carrera professional en el sector immobiliari.",
     "alternates": {
       "es": "/emprendedores/",
       "en": "/en/entrepreneurs/",
@@ -470,8 +399,7 @@ export const migratedRoutes = [
     "path": "/ca/contacte/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/contacte/",
     "title": "Contacte - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/contacte/",
+    "description": "Contacta amb Vivus Immobiliària. Resolem els teus dubtes sobre comprar, vendre o llogar el teu habitatge.",
     "alternates": {
       "es": "/contacto/",
       "en": "/en/contact/",
@@ -486,8 +414,7 @@ export const migratedRoutes = [
     "path": "/ca/landing-ca/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/landing-ca/",
     "title": "Landing CA - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/landing-ca/",
+    "description": "Propietats a Canet d'En Berenguer i el Port de Sagunt. Descobreix les oportunitats immobiliàries de la costa valenciana.",
     "alternates": {
       "es": "/landing/",
       "en": "/en/landing-en/",
@@ -495,15 +422,15 @@ export const migratedRoutes = [
     },
     "bodyClass": "",
     "contentFile": "ca-landing-ca.html",
-    "group": "landing"
+    "group": "landing",
+    "noindex": true
   },
   {
     "locale": "ca",
     "path": "/ca/politica-de-cookies-2/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/politica-de-cookies-2/",
     "title": "Política de cookies - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/politica-de-cookies-2/",
+    "description": "Política de cookies de Vivus Immobiliària: quines cookies utilitzem i com les pots gestionar.",
     "alternates": {
       "es": "/politica-de-cookies/",
       "en": "/en/cookies-policy/",
@@ -518,8 +445,7 @@ export const migratedRoutes = [
     "path": "/ca/politica-de-privacitat/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/politica-de-privacitat/",
     "title": "Política de privacitat - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/politica-de-privacitat/",
+    "description": "Política de privacitat de Vivus Immobiliària: com tractem i protegim les teves dades personals.",
     "alternates": {
       "es": "/politica-de-privacidad/",
       "en": "/en/privacy-policy/",
@@ -534,8 +460,7 @@ export const migratedRoutes = [
     "path": "/ca/avis-legal/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/avis-legal/",
     "title": "Avís legal - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/avis-legal/",
+    "description": "Avís legal de Vivus Immobiliària: informació legal i condicions d'ús del lloc web.",
     "alternates": {
       "es": "/aviso-legal/",
       "en": "/en/legal-warning/",
@@ -550,8 +475,7 @@ export const migratedRoutes = [
     "path": "/guia-de-inversion-y-estilo-de-vida/",
     "sourceUrl": "https://vivusinmobiliaria.com/guia-de-inversion-y-estilo-de-vida/",
     "title": "Guía de Inversión y Estilo de Vida - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/guia-de-inversion-y-estilo-de-vida/",
+    "description": "Guía de inversión y estilo de vida en el corredor costero: calidad de vida y oportunidades para invertir.",
     "alternates": {
       "es": "/guia-de-inversion-y-estilo-de-vida/",
       "en": "/en/investment-and-lifestyle-guide/",
@@ -566,8 +490,7 @@ export const migratedRoutes = [
     "path": "/servicios-inmobiliarios-360/",
     "sourceUrl": "https://vivusinmobiliaria.com/servicios-inmobiliarios-360/",
     "title": "Servicios Inmobiliarios 360º - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/servicios-inmobiliarios-360/",
+    "description": "Servicios inmobiliarios 360º: acompañamos todo el proceso de compraventa para que tu éxito sea nuestra meta.",
     "alternates": {
       "es": "/servicios-inmobiliarios-360/",
       "en": "/en/360o-real-estate-services/",
@@ -583,11 +506,9 @@ export const migratedRoutes = [
     "sourceUrl": "https://vivusinmobiliaria.com/accesibilidad/",
     "title": "Accesibilidad - Vivus",
     "description": "Declaración de accesibilidad web",
-    "canonicalPath": "/accesibilidad/",
     "alternates": {
       "es": "/accesibilidad/",
-      "en": "/en/accesibilidad/",
-      "ca": "/en/accesibilidad/"
+      "en": "/en/accesibilidad/"
     },
     "bodyClass": "",
     "contentFile": "es-accesibilidad.html",
@@ -598,8 +519,7 @@ export const migratedRoutes = [
     "path": "/en/investment-and-lifestyle-guide/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/investment-and-lifestyle-guide/",
     "title": "Investment and Lifestyle Guide - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/investment-and-lifestyle-guide/",
+    "description": "Investment and lifestyle guide to the coastal corridor: quality of life and opportunities to invest.",
     "alternates": {
       "es": "/guia-de-inversion-y-estilo-de-vida/",
       "en": "/en/investment-and-lifestyle-guide/",
@@ -614,8 +534,7 @@ export const migratedRoutes = [
     "path": "/en/360o-real-estate-services/",
     "sourceUrl": "https://vivusinmobiliaria.com/en/360o-real-estate-services/",
     "title": "360º Real Estate Services - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/en/360o-real-estate-services/",
+    "description": "360º real estate services: we support the whole buying and selling process because your success is our goal.",
     "alternates": {
       "es": "/servicios-inmobiliarios-360/",
       "en": "/en/360o-real-estate-services/",
@@ -631,11 +550,9 @@ export const migratedRoutes = [
     "sourceUrl": "https://vivusinmobiliaria.com/en/accesibilidad/",
     "title": "Accesibilidad - Vivus",
     "description": "Web accessibility statement",
-    "canonicalPath": "/en/accesibilidad/",
     "alternates": {
       "es": "/accesibilidad/",
-      "en": "/en/accesibilidad/",
-      "ca": "/en/accesibilidad/"
+      "en": "/en/accesibilidad/"
     },
     "bodyClass": "",
     "contentFile": "en-accesibilidad.html",
@@ -646,8 +563,7 @@ export const migratedRoutes = [
     "path": "/ca/guia-dinversio-i-estil-de-vida/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/guia-dinversio-i-estil-de-vida/",
     "title": "Guia d'Inversió i Estil de Vida - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/guia-dinversio-i-estil-de-vida/",
+    "description": "Guia d'inversió i estil de vida al corredor costaner: qualitat de vida i oportunitats per invertir.",
     "alternates": {
       "es": "/guia-de-inversion-y-estilo-de-vida/",
       "en": "/en/investment-and-lifestyle-guide/",
@@ -662,8 +578,7 @@ export const migratedRoutes = [
     "path": "/ca/serveis-immobiliaris-360/",
     "sourceUrl": "https://vivusinmobiliaria.com/ca/serveis-immobiliaris-360/",
     "title": "Serveis Immobiliaris 360 º - Vivus",
-    "description": "Inmobiliaria",
-    "canonicalPath": "/ca/serveis-immobiliaris-360/",
+    "description": "Serveis immobiliaris 360º: acompanyem tot el procés de compravenda perquè el teu èxit sigui la nostra meta.",
     "alternates": {
       "es": "/servicios-inmobiliarios-360/",
       "en": "/en/360o-real-estate-services/",
@@ -679,7 +594,6 @@ export const migratedRoutes = [
     "sourceUrl": "",
     "title": "Gracias - Vivus",
     "description": "Mensaje enviado correctamente.",
-    "canonicalPath": "/gracias/",
     "alternates": {
       "es": "/gracias/",
       "en": "/en/thanks/",
@@ -687,7 +601,8 @@ export const migratedRoutes = [
     },
     "bodyClass": "",
     "contentFile": "es-gracias.html",
-    "group": "thanks"
+    "group": "thanks",
+    "noindex": true
   },
   {
     "locale": "en",
@@ -695,7 +610,6 @@ export const migratedRoutes = [
     "sourceUrl": "",
     "title": "Thanks - Vivus",
     "description": "Message sent successfully.",
-    "canonicalPath": "/en/thanks/",
     "alternates": {
       "es": "/gracias/",
       "en": "/en/thanks/",
@@ -703,7 +617,8 @@ export const migratedRoutes = [
     },
     "bodyClass": "",
     "contentFile": "en-thanks.html",
-    "group": "thanks"
+    "group": "thanks",
+    "noindex": true
   },
   {
     "locale": "ca",
@@ -711,7 +626,6 @@ export const migratedRoutes = [
     "sourceUrl": "",
     "title": "Gràcies - Vivus",
     "description": "Missatge enviat correctament.",
-    "canonicalPath": "/ca/gracies/",
     "alternates": {
       "es": "/gracias/",
       "en": "/en/thanks/",
@@ -719,11 +633,10 @@ export const migratedRoutes = [
     },
     "bodyClass": "",
     "contentFile": "ca-gracies.html",
-    "group": "thanks"
+    "group": "thanks",
+    "noindex": true
   }
 ] as const satisfies readonly MigratedRoute[];
-
-export const routedPages = migratedRoutes;
 
 export function normalizePath(pathname: string) {
   if (pathname === '') return '/';

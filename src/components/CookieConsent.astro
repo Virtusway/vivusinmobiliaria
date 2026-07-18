@@ -1,0 +1,117 @@
+---
+import type { Locale } from '../data/routes';
+import { localeConfig } from '../data/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const config = localeConfig[locale];
+
+const copy = {
+  es: {
+    message: 'Utilizamos cookies propias y de terceros para analizar el uso del sitio web. Puedes aceptarlas, rechazarlas o consultar más información.',
+    policy: 'Más información',
+    accept: 'Aceptar',
+    reject: 'Rechazar',
+  },
+  en: {
+    message: 'We use our own and third-party cookies to analyse the use of the website. You can accept them, reject them or find out more.',
+    policy: 'More information',
+    accept: 'Accept',
+    reject: 'Reject',
+  },
+  ca: {
+    message: "Utilitzem cookies pròpies i de tercers per analitzar l'ús del lloc web. Les pots acceptar, rebutjar o consultar més informació.",
+    policy: 'Més informació',
+    accept: 'Accepta',
+    reject: 'Rebutja',
+  },
+}[locale];
+---
+
+<div id="cookie-consent" class="cookie-consent" role="dialog" aria-live="polite" aria-label={copy.message} hidden>
+  <div class="cookie-consent__inner">
+    <p class="cookie-consent__text">
+      {copy.message}
+      <a href={config.cookiesPolicyHref}>{copy.policy}</a>
+    </p>
+    <div class="cookie-consent__actions">
+      <button type="button" class="btn btn-secondary" id="cookie-consent-reject">{copy.reject}</button>
+      <button type="button" class="btn btn-orange" id="cookie-consent-accept">{copy.accept}</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 2000;
+    background: #fff;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+  }
+
+  .cookie-consent__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cookie-consent__text {
+    margin: 0;
+    flex: 1 1 320px;
+    font-size: 0.9rem;
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'vivus_cookie_consent';
+
+    function applyConsent(granted) {
+      if (typeof gtag !== 'function') return;
+      gtag('consent', 'update', {
+        analytics_storage: granted ? 'granted' : 'denied',
+        ad_storage: granted ? 'granted' : 'denied',
+        ad_user_data: granted ? 'granted' : 'denied',
+        ad_personalization: granted ? 'granted' : 'denied',
+      });
+    }
+
+    var stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === 'granted' || stored === 'denied') {
+      applyConsent(stored === 'granted');
+      return;
+    }
+
+    var banner = document.getElementById('cookie-consent');
+    if (!banner) return;
+    banner.hidden = false;
+
+    document.getElementById('cookie-consent-accept').addEventListener('click', function () {
+      localStorage.setItem(STORAGE_KEY, 'granted');
+      applyConsent(true);
+      banner.hidden = true;
+    });
+
+    document.getElementById('cookie-consent-reject').addEventListener('click', function () {
+      localStorage.setItem(STORAGE_KEY, 'denied');
+      applyConsent(false);
+      banner.hidden = true;
+    });
+  })();
+</script>

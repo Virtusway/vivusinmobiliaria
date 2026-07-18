@@ -64,7 +64,7 @@ const copy = {
 }[locale];
 
 const formName = `${variant}-${locale}`;
-const prefix = variant.replace(/[A-Z]/g, (letter) => letter.toLowerCase());
+const prefix = variant.toLowerCase();
 const formClass = variant === 'rrhhForm' ? 'row g-4 align-items-center' : 'row g-4';
 const subject = variant === 'rrhhForm' ? copy.rrhhSubject : copy.contactSubject;
 
@@ -74,7 +74,6 @@ const baseFields: Field[] = variant === 'tabForm'
       { id: 'phone', type: 'tel', placeholder: copy.phone, columns: 'col-12', required: true },
       { id: 'email', type: 'email', placeholder: copy.email, columns: 'col-12', required: true },
       { id: 'message', type: 'textarea', placeholder: copy.comments, columns: 'col-12' },
-      { id: 'subject', type: 'hidden', value: '', columns: 'col-12 d-none' },
     ]
   : variant === 'rrhhForm'
     ? [
@@ -111,6 +110,7 @@ function fieldName(field: Field) {
   <input type="hidden" name="form-name" value={formName} />
   <input type="hidden" name="locale" value={locale} />
   <input type="hidden" name="source_page" value={sourcePath} />
+  {/* For tabForm, the picked tab overwrites this value at runtime (see the tab-picker script in the page content). */}
   <input type="hidden" name="subject" value={subject} />
 
   {baseFields.map((field) => (

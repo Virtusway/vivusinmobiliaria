@@ -12,6 +12,7 @@ export const localeConfig: Record<
     buyerLabel: string;
     contactLabel: string;
     buyerHref: string;
+    cookiesPolicyHref: string;
   }
 > = {
   es: {
@@ -34,6 +35,7 @@ export const localeConfig: Record<
     buyerLabel: 'Agente Comprador',
     contactLabel: 'Contáctanos',
     buyerHref: '/landing/',
+    cookiesPolicyHref: '/politica-de-cookies/',
   },
   en: {
     htmlLang: 'en-US',
@@ -49,12 +51,13 @@ export const localeConfig: Record<
       { label: 'Cookies policy', href: '/en/cookies-policy/' },
       { label: 'Legal warning', href: '/en/legal-warning/' },
       { label: 'Privacy policy', href: '/en/privacy-policy/', rel: 'privacy-policy' },
-      { label: 'Accesibilidad', href: '/en/accesibilidad/' },
+      { label: 'Accessibility', href: '/en/accesibilidad/' },
     ],
     footerEmail: 'crm@vivusinmobiliaria.com',
     buyerLabel: 'Buyer Agent',
     contactLabel: 'Contact us',
     buyerHref: '/en/landing-en/',
+    cookiesPolicyHref: '/en/cookies-policy/',
   },
   ca: {
     htmlLang: 'ca',
@@ -70,12 +73,13 @@ export const localeConfig: Record<
       { label: 'Política de cookies', href: '/ca/politica-de-cookies-2/' },
       { label: 'Avís legal', href: '/ca/avis-legal/' },
       { label: 'Política de privacitat', href: '/ca/politica-de-privacitat/', rel: 'privacy-policy' },
-      { label: 'Accesibilidad', href: '/en/accesibilidad/' },
+      { label: 'Accessibilitat', href: '/accesibilidad/' },
     ],
     footerEmail: 'info@vivusinmobiliaria.com',
     buyerLabel: 'Agent Comprador',
     contactLabel: "Contacta'ns",
     buyerHref: '/ca/landing-ca/',
+    cookiesPolicyHref: '/ca/politica-de-cookies-2/',
   },
 };
 

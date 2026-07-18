@@ -6,6 +6,15 @@
   NODE_VERSION = "22.12.0"
 
 [[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
   for = "/wp-content/themes/vivus/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
@@ -15,10 +24,20 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+[[redirects]]
+  from = "/inicio/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/en/home/"
+  to = "/en/"
+  status = 301
+
+[[redirects]]
+  from = "/ca/inici/"
+  to = "/ca/"
+  status = 301
 
 [[redirects]]
   from = "/wp-admin/*"

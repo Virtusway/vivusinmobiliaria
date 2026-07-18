@@ -1,10 +1,10 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import WpHtmlPage from '../components/WpHtmlPage.astro';
-import { routedPages } from '../data/routes';
+import { migratedRoutes } from '../data/routes';
 
 export function getStaticPaths() {
-  return routedPages
+  return migratedRoutes
     .filter((route) => route.path !== '/')
     .map((route) => ({
       params: { slug: route.path.replace(/^\/|\/$/g, '') },
