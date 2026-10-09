@@ -54,7 +54,7 @@ const schema = {
     {Object.entries(route.alternates).map(([locale, href]) => (
       <link rel="alternate" href={new URL(href, SITE_URL).toString()} hreflang={locale} />
     ))}
-    <link rel="alternate" href={`${SITE_URL}/`} hreflang="x-default" />
+    <link rel="alternate" href={new URL(route.alternates.es ?? '/', SITE_URL).toString()} hreflang="x-default" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={route.title} />
@@ -94,10 +94,17 @@ const schema = {
         ad_personalization: 'denied',
         wait_for_update: 500,
       });
-      gtag('js', new Date());
-      gtag('config', 'G-4H3Y9HLZJT');
+      window.enableVivusAnalytics = function () {
+        if (document.getElementById('vivus-analytics')) return;
+        gtag('js', new Date());
+        gtag('config', 'G-4H3Y9HLZJT');
+        var script = document.createElement('script');
+        script.id = 'vivus-analytics';
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-4H3Y9HLZJT';
+        document.head.appendChild(script);
+      };
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4H3Y9HLZJT"></script>
   </head>
   <body class={route.bodyClass} id="top">
     <Header route={route} />

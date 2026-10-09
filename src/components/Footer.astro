@@ -8,6 +8,13 @@ interface Props {
 
 const { route } = Astro.props;
 const config = localeConfig[route.locale];
+const contactLabels = {
+  es: { instagram: 'Visitar Vivus Inmobiliaria en Instagram', whatsapp: 'Contactar con Vivus Inmobiliaria por WhatsApp', copyright: 'Todos los derechos reservados.' },
+  en: { instagram: 'Visit Vivus Real Estate on Instagram', whatsapp: 'Contact Vivus Real Estate on WhatsApp', copyright: 'All rights reserved.' },
+  ca: { instagram: 'Visita Vivus Immobiliària a Instagram', whatsapp: 'Contacta amb Vivus Immobiliària per WhatsApp', copyright: 'Tots els drets reservats.' },
+}[route.locale];
+const contactHref = { es: '/contacto/', en: '/en/contact/', ca: '/ca/contacte/' }[route.locale];
+const cookieSettingsLabel = { es: 'Configurar cookies', en: 'Cookie settings', ca: 'Configura les cookies' }[route.locale];
 ---
 
 <footer class="footer">
@@ -33,17 +40,17 @@ const config = localeConfig[route.locale];
         </ul>
 
         <ul class="socialmedia list-unstyled mb-0">
-          <li class="instagram"><a href={contactInfo.instagramHref} target="_blank" rel="noopener">
-            <i class="fab fa-instagram"></i>
+          <li class="instagram"><a href={contactInfo.instagramHref} target="_blank" rel="noopener" aria-label={contactLabels.instagram}>
+            <i class="fab fa-instagram" aria-hidden="true"></i>
           </a></li>
-          <li class="whatsapp"><a href={contactInfo.whatsappHref} target="_blank" rel="noopener">
-            <i class="fa-brands fa-whatsapp"></i>
+          <li class="whatsapp"><a href={contactInfo.whatsappHref} target="_blank" rel="noopener" aria-label={contactLabels.whatsapp}>
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
           </a></li>
         </ul>
 
         <div class="buttons">
           <a href={config.buyerHref} class="btn btn-primary">{config.buyerLabel}</a>
-          <a href="#contacto" class="btn btn-secondary">{config.contactLabel}</a>
+          <a href={contactHref} class="btn btn-secondary">{config.contactLabel}</a>
         </div>
       </div>
     </div>
@@ -56,12 +63,13 @@ const config = localeConfig[route.locale];
           <a href={item.href} rel={item.rel}>{item.label}</a>
         </li>
       ))}
+      <li><button type="button" id="cookie-settings" class="cookie-settings">{cookieSettingsLabel}</button></li>
     </ul>
 
-    <p>Copyright {new Date().getFullYear()}© Vivus Inmobiliaria. Todos los derechos reservados.</p>
+    <p>Copyright {new Date().getFullYear()}© Vivus Inmobiliaria. {contactLabels.copyright}</p>
   </div></section>
 </footer>
 
-<a class="button-whatsapp wow bounceIn" href={contactInfo.whatsappHref} target="_blank" rel="noopener">
-  <i class="fa-brands fa-whatsapp"></i>
+<a class="button-whatsapp wow bounceIn" href={contactInfo.whatsappHref} target="_blank" rel="noopener" aria-label={contactLabels.whatsapp}>
+  <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
 </a>

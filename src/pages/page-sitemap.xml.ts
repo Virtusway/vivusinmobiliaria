@@ -4,7 +4,7 @@ export function GET() {
   const lastmod = new Date().toISOString().slice(0, 10);
 
   const urls = migratedRoutes
-    .filter((route) => !route.noindex)
+    .filter((route) => !('noindex' in route && route.noindex))
     .map((route) => {
       const alternates = Object.entries(route.alternates)
         .map(
@@ -13,7 +13,8 @@ export function GET() {
         )
         .join('');
 
-      return `  <url>\n    <loc>${new URL(route.path, SITE_URL).toString()}</loc>\n    <lastmod>${lastmod}</lastmod>${alternates}\n  </url>`;
+      const defaultAlternate = new URL(route.alternates.es ?? '/', SITE_URL).toString();
+      return `  <url>\n    <loc>${new URL(route.path, SITE_URL).toString()}</loc>\n    <lastmod>${lastmod}</lastmod>${alternates}\n    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultAlternate}" />\n  </url>`;
     })
     .join('\n');
 

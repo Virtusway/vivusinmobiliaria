@@ -13,6 +13,8 @@ const languages: Array<{ locale: Locale; hreflang: string; label: string }> = [
   { locale: 'en', hreflang: 'en-US', label: 'English' },
   { locale: 'ca', hreflang: 'ca', label: 'Valencià' },
 ];
+const menuLabel = { es: 'Abrir menú de navegación', en: 'Open navigation menu', ca: 'Obri el menú de navegació' }[route.locale];
+const navigationLabel = { es: 'Navegación principal', en: 'Main navigation', ca: 'Navegació principal' }[route.locale];
 ---
 
 <header class="header"><div class="container">
@@ -20,22 +22,22 @@ const languages: Array<{ locale: Locale; hreflang: string; label: string }> = [
     <img src="/wp-content/themes/vivus/assets/img/logo.svg" alt="Vivus" class="img-fluid" />
   </a>
 
-  <div class="nav-menu" data-open="menu">
+  <button type="button" class="nav-menu" data-open="menu" aria-label={menuLabel} aria-controls="main-navigation" aria-expanded="false">
     <span class="menu-line"></span>
     <span class="menu-line"></span>
     <span class="menu-line"></span>
-  </div>
+  </button>
 
-  <nav class="navigation">
+  <nav class="navigation" id="main-navigation" aria-label={navigationLabel}>
     <ul class="menu list-unstyled">
       {config.nav.map((item) => (
-        <li class="menu-item menu-item-type-post_type menu-item-object-page">
-          <a href={item.href}>{item.label}</a>
+        <li class:list={['menu-item', 'menu-item-type-post_type', 'menu-item-object-page', route.path === item.href && 'current-menu-item']}>
+          <a href={item.href} aria-current={route.path === item.href ? 'page' : undefined}>{item.label}</a>
         </li>
       ))}
       <li class="pll-parent-menu-item menu-item menu-item-type-custom menu-item-object-custom current-menu-parent menu-item-has-children">
-        <a href="#pll_switcher">{config.label}</a>
-        <ul class="sub-menu">
+        <button type="button" class="language-toggle" aria-expanded="false" aria-controls="language-menu">{config.label}</button>
+        <ul class="sub-menu" id="language-menu">
           {languages.map((language) => (
             <li class:list={[
               'lang-item',

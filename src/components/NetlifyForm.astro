@@ -105,7 +105,7 @@ function fieldName(field: Field) {
   netlify-honeypot="bot-field"
 >
   <p class="netlify-honeypot">
-    <label>Leave this field empty <input name="bot-field" type="text" /></label>
+    <label>Leave this field empty <input name="bot-field" type="text" tabindex="-1" autocomplete="off" /></label>
   </p>
   <input type="hidden" name="form-name" value={formName} />
   <input type="hidden" name="locale" value={locale} />
@@ -155,6 +155,6 @@ function fieldName(field: Field) {
   </div>
 
   <div class="col-12">
-    <button type="submit" class="btn btn-block-mobile btn-orange">{copy.send}</button>
+    <button type="submit" class:list={['btn', 'btn-block-mobile', variant === 'tabForm' ? 'btn-secondary' : 'btn-orange']}>{copy.send}</button>
   </div>
 </form>
