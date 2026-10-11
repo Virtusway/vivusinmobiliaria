@@ -1,9 +1,10 @@
 ---
 import type { Locale } from '../data/routes';
+import type { FormVariant } from '../data/forms';
 
 interface Props {
   locale: Locale;
-  variant: 'contactForm' | 'tabForm' | 'rrhhForm';
+  variant: FormVariant;
   sourcePath: string;
 }
 
@@ -31,7 +32,6 @@ const copy = {
     age: 'Edad',
     location: 'Población',
     terms: 'Acepto los <a href="/wp-content/uploads/2026/01/Condiciones-de-uso.pdf" target="_blank" rel="noopener">términos</a> y <a href="/wp-content/uploads/2026/01/Politica-de-privacidad.pdf" target="_blank" rel="noopener">condiciones</a>.',
-    success: '/gracias/',
   },
   en: {
     send: 'Send',
@@ -45,7 +45,6 @@ const copy = {
     age: 'Age',
     location: 'Location',
     terms: 'I agree to the <a href="/wp-content/uploads/2026/01/Condiciones-de-uso.pdf" target="_blank" rel="noopener">terms</a> and <a href="/wp-content/uploads/2026/01/Politica-de-privacidad.pdf" target="_blank" rel="noopener">conditions</a>.',
-    success: '/en/thanks/',
   },
   ca: {
     send: 'Envia',
@@ -59,7 +58,6 @@ const copy = {
     age: 'Edat',
     location: 'Població',
     terms: 'Accepto els <a href="/wp-content/uploads/2026/01/Condiciones-de-uso.pdf" target="_blank" rel="noopener">termes</a> i les <a href="/wp-content/uploads/2026/01/Politica-de-privacidad.pdf" target="_blank" rel="noopener">condicions</a>.',
-    success: '/ca/gracies/',
   },
 }[locale];
 
@@ -96,13 +94,13 @@ function fieldName(field: Field) {
 ---
 
 <form
-  action={copy.success}
+  action="/api/contact/"
   method="POST"
   id={variant}
   class={formClass}
   name={formName}
-  data-netlify="true"
-  netlify-honeypot="bot-field"
+  data-contact-form
+  data-locale={locale}
 >
   <p class="netlify-honeypot">
     <label>Leave this field empty <input name="bot-field" type="text" tabindex="-1" autocomplete="off" /></label>
@@ -156,5 +154,58 @@ function fieldName(field: Field) {
 
   <div class="col-12">
     <button type="submit" class:list={['btn', 'btn-block-mobile', variant === 'tabForm' ? 'btn-secondary' : 'btn-orange']}>{copy.send}</button>
+    <p class="form-status mt-3 mb-0" data-form-status role="status" aria-live="polite" tabindex="-1" hidden></p>
   </div>
 </form>
+
+<script>
+  import { formMessages } from '../data/forms';
+
+  document.querySelectorAll<HTMLFormElement>('form[data-contact-form]').forEach((form) => {
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    if (!button || !status) return;
+    const locale = form.dataset.locale;
+    const copy = formMessages[locale === 'en' || locale === 'ca' ? locale : 'es'];
+    const defaultLabel = button.textContent;
+    let submitting = false;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (submitting || !form.reportValidity()) return;
+
+      submitting = true;
+      button.disabled = true;
+      button.textContent = copy.pending;
+      form.setAttribute('aria-busy', 'true');
+      status.hidden = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const payload: unknown = await response.json().catch(() => null);
+        const message = payload && typeof payload === 'object' &&
+          'message' in payload && typeof payload.message === 'string'
+          ? payload.message : copy.failed;
+        if (!response.ok) throw new Error(message);
+        if (!payload || typeof payload !== 'object' ||
+          !('redirect' in payload) || payload.redirect !== copy.successPath) {
+          throw new Error(copy.failed);
+        }
+        window.location.assign(copy.successPath);
+      } catch (error) {
+        status.textContent = error instanceof Error ? error.message : copy.failed;
+        status.hidden = false;
+        status.focus();
+      } finally {
+        submitting = false;
+        button.disabled = false;
+        button.textContent = defaultLabel;
+        form.removeAttribute('aria-busy');
+      }
+    });
+  });
+</script>

@@ -114,7 +114,7 @@ def main():
             if f'<link rel="alternate" href="{SITE}{alternate}" hreflang="{locale}"' not in html:
                 problems.append(f"Missing built {locale} alternate: {route['path']}")
         for form in pages[route["path"]].forms:
-            if form.get("method", "").upper() != "POST" or form.get("data-netlify") != "true" or not built_path(form.get("action", "")).is_file():
+            if form.get("method", "").upper() != "POST" or form.get("action") != "/api/contact/" or "data-contact-form" not in form or form.get("data-locale") != route["locale"]:
                 problems.append(f"Invalid migrated form: {route['path']} {form.get('id')}")
         if "admin-ajax.php" in html or "contactForm('" in html:
             problems.append(f"WordPress form handler remains: {route['path']}")

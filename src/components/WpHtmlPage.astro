@@ -1,6 +1,7 @@
 ---
 import type { MigratedRoute } from '../data/routes';
-import NetlifyForm from './NetlifyForm.astro';
+import ContactForm from './ContactForm.astro';
+import type { FormVariant } from '../data/forms';
 
 interface Props {
   route: MigratedRoute;
@@ -9,8 +10,6 @@ interface Props {
 type ContentPart =
   | { type: 'html'; value: string }
   | { type: 'form'; value: FormVariant };
-
-type FormVariant = 'contactForm' | 'tabForm' | 'rrhhForm';
 
 const { route } = Astro.props;
 const pages = import.meta.glob<string>('../content/wp-pages/*.html', {
@@ -52,5 +51,5 @@ const parts = splitContent(html);
 {parts.map((part) => (
   part.type === 'html'
     ? <Fragment set:html={part.value} />
-    : <NetlifyForm locale={route.locale} variant={part.value} sourcePath={route.path} />
+    : <ContactForm locale={route.locale} variant={part.value} sourcePath={route.path} />
 ))}
