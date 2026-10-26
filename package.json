@@ -1,14 +1,13 @@
 {
   "name": "vivusinmobiliaria",
-  "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": ">=22.13.0"
-  },
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
-    "check": "astro check",
+    "check": "vp check && astro check",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "check:forms": "node scripts/check-forms.mjs",
     "audit:migration": "python scripts/audit-migration.py",
@@ -20,11 +19,15 @@
     "astro": "^7.3.5",
     "nodemailer": "^8.0.11"
   },
-  "packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8",
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@types/node": "^25.9.9",
     "@types/nodemailer": "^8.0.2",
-    "typescript": "^6.0.3"
-  }
+    "typescript": "^6.0.3",
+    "vite-plus": "catalog:"
+  },
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  },
+  "packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8"
 }

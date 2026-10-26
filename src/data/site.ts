@@ -72,7 +72,11 @@ export const localeConfig: Record<
     footerLinks: [
       { label: 'Política de cookies', href: '/ca/politica-de-cookies-2/' },
       { label: 'Avís legal', href: '/ca/avis-legal/' },
-      { label: 'Política de privacitat', href: '/ca/politica-de-privacitat/', rel: 'privacy-policy' },
+      {
+        label: 'Política de privacitat',
+        href: '/ca/politica-de-privacitat/',
+        rel: 'privacy-policy',
+      },
       { label: 'Accessibilitat', href: '/accesibilidad/' },
     ],
     footerEmail: 'info@vivusinmobiliaria.com',

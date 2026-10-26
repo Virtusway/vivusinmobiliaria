@@ -6,5 +6,5 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   output: 'static',
   adapter: netlify(),
-  trailingSlash: 'always'
+  trailingSlash: 'always',
 });

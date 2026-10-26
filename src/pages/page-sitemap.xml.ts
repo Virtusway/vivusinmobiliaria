@@ -9,7 +9,7 @@ export function GET() {
       const alternates = Object.entries(route.alternates)
         .map(
           ([locale, href]) =>
-            `\n    <xhtml:link rel="alternate" hreflang="${locale}" href="${new URL(href, SITE_URL).toString()}" />`
+            `\n    <xhtml:link rel="alternate" hreflang="${locale}" href="${new URL(href, SITE_URL).toString()}" />`,
         )
         .join('');
 
@@ -24,6 +24,6 @@ export function GET() {
       headers: {
         'Content-Type': 'application/xml; charset=utf-8',
       },
-    }
+    },
   );
 }

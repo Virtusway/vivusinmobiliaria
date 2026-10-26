@@ -1,65 +1,65 @@
 [build]
-  command = "pnpm build"
-  publish = "dist"
+command = "pnpm build"
+publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "24"
+NODE_VERSION = "24"
 
 [[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+for = "/*"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[headers]]
-  for = "/wp-content/themes/vivus/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/wp-content/themes/vivus/assets/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/wp-content/uploads/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/wp-content/uploads/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
-  from = "/inicio/"
-  to = "/"
-  status = 301
+from = "/inicio/"
+to = "/"
+status = 301
 
 [[redirects]]
-  from = "/en/home/"
-  to = "/en/"
-  status = 301
+from = "/en/home/"
+to = "/en/"
+status = 301
 
 [[redirects]]
-  from = "/ca/inici/"
-  to = "/ca/"
-  status = 301
+from = "/ca/inici/"
+to = "/ca/"
+status = 301
 
 [[redirects]]
-  from = "/wp-admin/*"
-  to = "/404.html"
-  status = 404
+from = "/wp-admin/*"
+to = "/404.html"
+status = 404
 
 [[redirects]]
-  from = "/wp-login.php"
-  to = "/404.html"
-  status = 404
+from = "/wp-login.php"
+to = "/404.html"
+status = 404
 
 [[redirects]]
-  from = "/xmlrpc.php"
-  to = "/404.html"
-  status = 404
+from = "/xmlrpc.php"
+to = "/404.html"
+status = 404
 
 [[redirects]]
-  from = "/wp-json/*"
-  to = "/404.html"
-  status = 404
+from = "/wp-json/*"
+to = "/404.html"
+status = 404
 
 [[redirects]]
-  from = "/admin-ajax.php"
-  to = "/404.html"
-  status = 404
+from = "/admin-ajax.php"
+to = "/404.html"
+status = 404

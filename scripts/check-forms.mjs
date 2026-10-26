@@ -7,7 +7,9 @@ for (const variant of ['contactForm', 'tabForm', 'rrhhForm']) {
   for (const locale of ['es', 'en', 'ca']) {
     const body = { 'form-name': `${variant}-${locale}`, locale };
     const response = await fetch(new URL('/api/contact/', base), {
-      method: 'POST', headers, body: new URLSearchParams(body),
+      method: 'POST',
+      headers,
+      body: new URLSearchParams(body),
     });
     assert.equal(response.status, 400, `${variant}-${locale} must reject missing required fields`);
     assert.match(response.headers.get('content-type') ?? '', /application\/json/);
@@ -15,13 +17,16 @@ for (const variant of ['contactForm', 'tabForm', 'rrhhForm']) {
 
     // Exercise success responses safely without sending external email.
     const honeypot = await fetch(new URL('/api/contact/', base), {
-      method: 'POST', headers, body: new URLSearchParams({ ...body, 'bot-field': 'bot' }),
+      method: 'POST',
+      headers,
+      body: new URLSearchParams({ ...body, 'bot-field': 'bot' }),
     });
     assert.equal(honeypot.status, 200);
     assert.equal((await honeypot.json()).redirect, successPaths[locale]);
 
     const native = await fetch(new URL('/api/contact/', base), {
-      method: 'POST', redirect: 'manual',
+      method: 'POST',
+      redirect: 'manual',
       headers: { Origin: headers.Origin },
       body: new URLSearchParams({ ...body, 'bot-field': 'bot' }),
     });
@@ -29,4 +34,6 @@ for (const variant of ['contactForm', 'tabForm', 'rrhhForm']) {
     assert.equal(native.headers.get('location'), successPaths[locale]);
   }
 }
-console.info('All nine form/language combinations pass API validation, honeypot and native redirect checks. No external email sent.');
+console.info(
+  'All nine form/language combinations pass API validation, honeypot and native redirect checks. No external email sent.',
+);

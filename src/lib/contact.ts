@@ -38,7 +38,10 @@ export async function handleContactRequest({
       );
     }
     if (status < 400) {
-      return new Response(null, { status: 303, headers: { ...headers, Location: copy.successPath } });
+      return new Response(null, {
+        status: 303,
+        headers: { ...headers, Location: copy.successPath },
+      });
     }
     const home = locale === 'es' ? '/' : `/${locale}/`;
     return new Response(
@@ -73,14 +76,25 @@ export async function handleContactRequest({
   const source = readField(form, 'source_page');
 
   if (
-    !name || name.length > 200 || !phone || phone.length > 60 ||
-    email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-    terms !== 'Agree' || (variant === 'rrhhForm' && (!age || !location)) ||
-    age.length > 20 || location.length > 200 || message.length > 10000 ||
-    subject.length > 200 || /[\r\n]/.test(subject) ||
-    !source.startsWith('/') || source.startsWith('//') || source.length > 2048 ||
+    !name ||
+    name.length > 200 ||
+    !phone ||
+    phone.length > 60 ||
+    email.length > 254 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    terms !== 'Agree' ||
+    (variant === 'rrhhForm' && (!age || !location)) ||
+    age.length > 20 ||
+    location.length > 200 ||
+    message.length > 10000 ||
+    subject.length > 200 ||
+    /[\r\n]/.test(subject) ||
+    !source.startsWith('/') ||
+    source.startsWith('//') ||
+    source.length > 2048 ||
     /[\r\n]/.test(source)
-  ) return respond(copy.invalid, 400);
+  )
+    return respond(copy.invalid, 400);
 
   const text = [
     `Formulario: ${formName}`,

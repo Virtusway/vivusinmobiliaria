@@ -26,17 +26,30 @@ function normalizeHtml(html, locale) {
     ca: '/ca/politica-de-privacitat/',
   }[locale];
 
-  return html
-    // Normalize URL attributes, keeping visible URLs in legal statements intact.
-    .replace(/\b(href|src|srcset|data-lottie|style)="([^"]*)"/g, (_, name, value) =>
-      `${name}="${value.replaceAll(SITE, '').replaceAll('http://vivusinmobiliaria.com', '')}"`)
-    .replace(/<form\b[^>]*\bid="(contactForm|tabForm|rrhhForm)"[^>]*>[\s\S]*?<\/form>\s*<script>[\s\S]*?<\/script>/gi,
-      (_, variant) => `<!--NETLIFY_FORM:${variant}-->`)
-    .replaceAll('input[name="tabform[subject]"]', 'input[name="subject"]')
-    .replaceAll('href="/data_protection_policy.html"', `href="${privacy}"`)
-    .replaceAll('href="/va/privacy-policy"', `href="${privacy}"`)
-    .replaceAll('https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js', '/wp-content/themes/vivus/assets/js/libs/isotope.pkgd.min.js')
-    .replace(/<iframe\b(?![^>]*\btitle=)/g, `<iframe title="${{ es: 'Mapa de la costa valenciana', en: 'Map of the Valencian coast', ca: 'Mapa de la costa valenciana' }[locale]}" loading="lazy"`);
+  return (
+    html
+      // Normalize URL attributes, keeping visible URLs in legal statements intact.
+      .replace(
+        /\b(href|src|srcset|data-lottie|style)="([^"]*)"/g,
+        (_, name, value) =>
+          `${name}="${value.replaceAll(SITE, '').replaceAll('http://vivusinmobiliaria.com', '')}"`,
+      )
+      .replace(
+        /<form\b[^>]*\bid="(contactForm|tabForm|rrhhForm)"[^>]*>[\s\S]*?<\/form>\s*<script>[\s\S]*?<\/script>/gi,
+        (_, variant) => `<!--NETLIFY_FORM:${variant}-->`,
+      )
+      .replaceAll('input[name="tabform[subject]"]', 'input[name="subject"]')
+      .replaceAll('href="/data_protection_policy.html"', `href="${privacy}"`)
+      .replaceAll('href="/va/privacy-policy"', `href="${privacy}"`)
+      .replaceAll(
+        'https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js',
+        '/wp-content/themes/vivus/assets/js/libs/isotope.pkgd.min.js',
+      )
+      .replace(
+        /<iframe\b(?![^>]*\btitle=)/g,
+        `<iframe title="${{ es: 'Mapa de la costa valenciana', en: 'Map of the Valencian coast', ca: 'Mapa de la costa valenciana' }[locale]}" loading="lazy"`,
+      )
+  );
 }
 
 await mkdir(OUT_DIR, { recursive: true });
@@ -53,7 +66,9 @@ for (const page of pages) {
   }
   const body = normalizeHtml(extractMain(html), page.locale);
   if (page.group === 'landing' && !body.includes('<!--NETLIFY_FORM:contactForm-->')) {
-    console.warn(`Preserved ${page.contentFile}: the live landing page has lost its contact form/content.`);
+    console.warn(
+      `Preserved ${page.contentFile}: the live landing page has lost its contact form/content.`,
+    );
     continue;
   }
   if (/<form\b/i.test(body)) throw new Error(`Unconverted WordPress form in ${page.contentFile}`);
@@ -65,8 +80,12 @@ for (const { file, body } of updates) {
     if (error.code === 'ENOENT') return '';
     throw error;
   });
-  const normalized = body.replace(/\r\n/g, '\n').split('\n')
-    .map((line) => line.replace(/[ \t]+$/, '').replace(/^[ \t]+/, (indent) => indent.replaceAll('\t', '    ')))
+  const normalized = body
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .map((line) =>
+      line.replace(/[ \t]+$/, '').replace(/^[ \t]+/, (indent) => indent.replaceAll('\t', '    ')),
+    )
     .join('\n');
   if (existing === normalized) continue;
   await writeFile(target, normalized, 'utf8');

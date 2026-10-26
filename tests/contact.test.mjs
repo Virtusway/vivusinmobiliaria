@@ -19,7 +19,8 @@ function submission({ variant = 'contactForm', locale = 'es', changes = {}, json
     [`${prefix}[location]`]: 'Sagunto',
     [`${prefix}[message]`]: '<script>alert("test")</script>\nA message',
     ...changes,
-  })) form.set(key, value);
+  }))
+    form.set(key, value);
   return new Request('https://vivusinmobiliaria.com/api/contact/', {
     method: 'POST',
     headers: json ? { Accept: 'application/json' } : {},
@@ -36,7 +37,11 @@ for (const variant of ['contactForm', 'tabForm', 'rrhhForm']) {
       const response = await handleContactRequest({
         request: submission({ variant, locale }),
         sendMail: async (email) => {
-          const result = await transport.sendMail({ ...email, from: 'sender@example.com', to: 'crm@virtusway.com' });
+          const result = await transport.sendMail({
+            ...email,
+            from: 'sender@example.com',
+            to: 'crm@virtusway.com',
+          });
           assert.ok(Buffer.isBuffer(result.message));
           assert.match(result.message.toString(), /Reply-To: contact@example.com/);
           assert.match(result.message.toString(), /Content-Type: text\/plain/);
@@ -90,7 +95,9 @@ test('recruitment requires age and location', async () => {
 test('SMTP failure does not claim success or redirect', async () => {
   const response = await handleContactRequest({
     request: submission({ locale: 'en' }),
-    sendMail: async () => { throw new Error('SMTP rejected'); },
+    sendMail: async () => {
+      throw new Error('SMTP rejected');
+    },
   });
   assert.equal(response.status, 500);
   const payload = await response.json();
@@ -111,7 +118,9 @@ test('native submissions redirect only after email sends', async () => {
     let sent = false;
     const response = await handleContactRequest({
       request: submission({ locale, json: false }),
-      sendMail: async () => { sent = true; },
+      sendMail: async () => {
+        sent = true;
+      },
     });
     assert.equal(sent, true);
     assert.equal(response.status, 303);
@@ -122,7 +131,9 @@ test('native submissions redirect only after email sends', async () => {
 test('native SMTP errors render an error page instead of a thank-you page', async () => {
   const response = await handleContactRequest({
     request: submission({ json: false }),
-    sendMail: async () => { throw new Error('SMTP unavailable'); },
+    sendMail: async () => {
+      throw new Error('SMTP unavailable');
+    },
   });
   assert.equal(response.status, 500);
   assert.equal(response.headers.get('location'), null);
@@ -131,7 +142,10 @@ test('native SMTP errors render an error page instead of a thank-you page', asyn
 
 test('malformed bodies fail without sending email', async () => {
   const response = await handleContactRequest({
-    request: new Request('https://vivusinmobiliaria.com/api/contact/', { method: 'POST', body: 'not form data' }),
+    request: new Request('https://vivusinmobiliaria.com/api/contact/', {
+      method: 'POST',
+      body: 'not form data',
+    }),
     sendMail: async () => assert.fail('Malformed requests must not send email'),
   });
   assert.equal(response.status, 400);

@@ -12,7 +12,11 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CONTENT_DIR = join(ROOT, 'src/content/wp-pages');
 const PUBLIC_DIR = join(ROOT, 'public');
 
-const pattern = process.argv[2] ?? [join(CONTENT_DIR, '*.html'), join(ROOT, 'src/**/*.astro'), join(ROOT, 'src/data/*.ts')];
+const pattern = process.argv[2] ?? [
+  join(CONTENT_DIR, '*.html'),
+  join(ROOT, 'src/**/*.astro'),
+  join(ROOT, 'src/data/*.ts'),
+];
 const files = await glob(pattern);
 
 const paths = new Set();
